@@ -8,9 +8,9 @@ $(function() {
        }).done(function(bookNamesArray) {
            booksList.empty();
            for(var i = 0; i < bookNamesArray.length; i++) {
-               var newLi = $("<li>");
-               var removeButton = $("<button class='delBtn'>Delete</button>");
-               var showButton = $("<button class='showBtn'>More info</button>");
+               var newLi = $("<li class='list-group-item'>");
+               var removeButton = $("<button class='delBtn btn btn-danger badgeRed'>Delete</button>");
+               var showButton = $("<button class='showBtn btn btn-success badge'>More info</button>");
                newLi.attr("data-id", bookNamesArray[i].id);
                newLi.text(bookNamesArray[i].name);
                newLi.append(showButton);
@@ -37,7 +37,7 @@ $(function() {
             dataType: "JSON"
         }).done(function(book) {
             var newDiv = $("<div id='bookInf'>" +
-                                "<h1>" + book.title + "</h1>" +
+                                "<h2>" + book.title + "</h2>" +
                                 "<p>" + book.author + "</p>" +
                                 "<p>" + book.description + "</p>" +
                             "</div>");
@@ -45,10 +45,10 @@ $(function() {
             //Form for editing book info
             var editForm = $("<form id='editBook' action='#'>");
             var formHeader = $("<h3>Edit book info</h3>");
-            var titleInput = $("<label>Title:<input name='editTitle' type='text'></label><br>");
-            var authorInput = $("<label>Author:<input name='editAuthor' type='text'></label><br>");;
-            var descriptionInput = $("<label>Description:<textarea name='editDescription'></textarea></label><br>");
-            var submitBtn = $("<input name='editBtn' type='submit' value='Edit'><br>");
+            var titleInput = $("<div class='form-group'><label>Title:<input class='form-control' name='editTitle' type='text'></label></div>");
+            var authorInput = $("<div class='form-group'><label>Author:<input class='form-control' name='editAuthor' type='text'></label></div>");;
+            var descriptionInput = $("<div class='form-group'><label>Description:<textarea class='form-control' name='editDescription'></textarea></label></div>");
+            var submitBtn = $("<input name='editBtn' class='btn btn-success' type='submit' value='Edit'><br>");
             editForm.append(formHeader);
             editForm.append(titleInput);
             editForm.append(authorInput);

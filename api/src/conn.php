@@ -12,5 +12,3 @@ if($conn->errno) {
     die("Can't connect to database. Error: ". $conn->error);
 }
 
-
-
