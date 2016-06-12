@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bookshelf</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="./js/jquery-2.2.4.js"></script>
+        <script src="./js/app.js"></script>
+    </head>
+    <body>
+        <form method="POST" id="addNewBook">
+            <label>
+               Add title:
+               <input type="text" name="title" id="title">
+            </label>  
+            <label>
+                Add author:
+                <input type="text" name="author_name" id="author_name">
+            </label>
+            <label>
+                Add description:
+                <input type="text" name="description" id="description">
+            </label>
+            <input type="submit" value="Add">
+        </form>
+        <ul id="listWithBooks">  
+        </ul>
+    </body>
+</html>
