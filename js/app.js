@@ -45,10 +45,10 @@ $(function() {
             //Form for editing book info
             var editForm = $("<form id='editBook' action='#'>");
             var formHeader = $("<h3>Edit book info</h3>");
-            var titleInput = $("<label>Title:<input id='editTitle' type='text'></label><br>");
-            var authorInput = $("<label>Author:<input id='editAuthor' type='text'></label><br>");;
-            var descriptionInput = $("<label>Description:<textarea id='editDescription'></textarea></label><br>");
-            var submitBtn = $("<input id='editBtn' type='submit' value='Edit'><br>");
+            var titleInput = $("<label>Title:<input name='editTitle' type='text'></label><br>");
+            var authorInput = $("<label>Author:<input name='editAuthor' type='text'></label><br>");;
+            var descriptionInput = $("<label>Description:<textarea name='editDescription'></textarea></label><br>");
+            var submitBtn = $("<input name='editBtn' type='submit' value='Edit'><br>");
             editForm.append(formHeader);
             editForm.append(titleInput);
             editForm.append(authorInput);
@@ -63,24 +63,23 @@ $(function() {
             console.log("AJAX failed when reading book with id " + bookId);
         });
         
-    booksList.one("submit", "#editBook", function(event) {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        var formInfo = $(this).serialize();
+        booksList.one("submit", "#editBook", function(event) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            var editFormInfo = $(this).serialize();
 
-        $.ajax({
-            url: "http://192.168.33.22/REST_bookshelf/api/books.php",
-            method: "PUT",
-            data: "id=" + bookId + "&" + formInfo,
-            dataType: "JSON"
-        }).done(function() {
-            loadAllBooks();
-            console.log("Edited book info");
-        }).fail(function(xhr,status,error) {
-            console.log("AJAX failed when editing a book" + error);
-        });
-    });
-        
+            $.ajax({
+                url: "http://192.168.33.22/REST_bookshelf/api/books.php",
+                method: "PUT",
+                data: "id=" + bookId + "&" + editFormInfo,
+                dataType: "JSON"
+            }).done(function() {
+                loadAllBooks();
+                console.log("Edited book info");
+            }).fail(function(xhr,status,error) {
+                console.log("AJAX failed when editing a book" + error);
+            });
+        });   
     });
     
     
