@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+    if(!empty($_POST['title']) && !empty($_POST['author_name']) && !empty($_POST['description'])) {
         $newBook = new Book();
         $newBook->setTitle($_POST['title']);
         $newBook->setAuthor($_POST['author_name']);
@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $newBook->saveToDB($conn);
         $newBookJSON = json_encode($newBook);
         echo($newBookJSON);
+    }   
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'DELETE') {
@@ -41,12 +42,9 @@ if($_SERVER['REQUEST_METHOD'] === 'PUT') {
     
     parse_str(file_get_contents("php://input"), $put_vars);
     $bookToEdit = new Book();
-    $bookId = $put_vars['id'];
-    $bookToEdit->loadFromDB($bookId, $conn);
-    $bookToEdit->setTitle($put_vars['editTitle']);
-    $bookToEdit->setAuthor($put_vars['editAuthor']);
-    $bookToEdit->setDescription($put_vars['editDescription']);
+    $bookToEditId = $put_vars['id'];
+    $bookToEdit->editDB($conn, $bookToEditId, $put_vars['title'], $put_vars['author'], $put_vars['description']);
     $bookToEdit->saveToDB($conn, $bookId);
-    $bookToEditJSON = json_encode($bookToEdit->toArray());
-    echo($bookToEditJSON);
+    $bookToEditJSON = json_encode($bookToEdit);
+    echo($bookToEditJSON);   
 }

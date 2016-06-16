@@ -43,18 +43,21 @@ $(function() {
                             "</div>");
             
             //Form for editing book info
-            var editForm = $("<form id='editBook' action='#'>");
+            var editForm = $("<form id='editBook'>");
             var formHeader = $("<h3>Edit book info</h3>");
-            var titleInput = $("<div class='form-group'><label>Title:<input class='form-control' name='editTitle' type='text'></label></div>");
-            var authorInput = $("<div class='form-group'><label>Author:<input class='form-control' name='editAuthor' type='text'></label></div>");;
-            var descriptionInput = $("<div class='form-group'><label>Description:<textarea class='form-control' name='editDescription'></textarea></label></div>");
-            var submitBtn = $("<input name='editBtn' class='btn btn-success' type='submit' value='Edit'><br>");
+            var titleInput = $("<div class='form-group'><label>Title:<input class='form-control' id='name' name='title' type='text'></label></div>");
+            var authorInput = $("<div class='form-group'><label>Author:<input class='form-control' id='author_name' name='author' type='text'></label></div>");;
+            var descriptionInput = $("<div class='form-group'><label>Description:<textarea class='form-control' id='description' name='description'></textarea></label></div>");
+            var submitBtn = $("<input name='editBtn' class='btn btn-success' id='editBook' type='submit' value='Edit'><br>");
+            
+            
             editForm.append(formHeader);
             editForm.append(titleInput);
             editForm.append(authorInput);
             editForm.append(descriptionInput);
             editForm.append(submitBtn);
             newDiv.append(editForm);
+            
             buttonParent.append(newDiv);
             button.removeClass("showBtn");
             button.text("Hide info");

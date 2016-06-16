@@ -84,17 +84,19 @@ class Book {
                 return true;
             }
             return false;
-            
         }
-        else{
-            $sql = "UPDATE Books SET name = '{$this->title}', author_name = '{$this->author}', description = '{$this->description}' WHERE id={$this->id}";
-            $result = $conn->query($sql);
-            if($result == true) {
-                return true;
-            }
-            return false;  
-        }             
     }
+    
+    public function editDB(mysqli $conn, $id, $title, $author, $description) {
+
+        $sql = "UPDATE Books SET name = '$title', author_name = '$author', description = '$description' WHERE id=$id";
+        $result = $conn->query($sql);
+        if($result == true) {
+            return true;
+        }
+        return false;  
+    }
+
     
     public function toArray() {
         $ret = [];
